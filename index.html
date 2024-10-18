@@ -2,11 +2,19 @@
   <body>
     <button onclick="Puck.setTime()">Set Time</button> 
     <button onclick="Puck.write('Bangle.buzz()\n')">Make Buzz</button>  
-    <button onclick="writeFile()"></button>  
+    <button onclick="writeFile()">Write File</button>  
+    <button onclick="readFile()">Read File</button> 
+    <p id="contents">Nothing here</p>  
     <script src="https://www.puck-js.com/puck.js"></script>
     <script>
-      function writefile(){
+      function writeFile(){
         Puck.write('require("Storage").write("a_file","Hello World")\n')
+      }
+      function readFile(){
+        Puck.eval('require("Storage").read("a_file")',function(data){
+          document.getElementByID("contents").innerHTML = data;
+
+        });
       }
     </script>
   </body>
